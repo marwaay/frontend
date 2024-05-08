@@ -1,0 +1,98 @@
+<!-- Boxicons -->
+<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+<!-- My CSS -->
+<link rel="stylesheet" href="/assets/css/style.css">
+<!-- My js -->
+<script src="/assets/js/script.js"></script>
+<!-- SIDEBAR -->
+<section id="sidebar" >
+    <a><img src="../../../assets/img/2-removebg-preview (1).png" style="width: 250px; height: auto;"></a>
+
+  <ul class="side-menu top">
+    <li class="active">
+      <a href="#">
+        <i class='bx bxs-dashboard' ></i>
+        <span class="text">Dashboard</span>
+      </a>
+    </li>
+
+      <li *ngIf="userProfile?.role !== 'CHEF' && userProfile?.role !== 'ADMIN'">
+        <a (click)="redirectToAjouerConges()" >
+          <i class='bx bxs-add-to-queue' ></i>
+          <span class="text">Ajouter Congés</span>  
+        </a>
+      </li>
+    
+      <li *ngIf="userProfile?.role !== 'CHEF' && userProfile?.role !== 'ADMIN'">
+        <a (click)="redirectToMesConges()">
+          <i class='bx bxs-archive archive-icon'></i>
+          <span class="text">Mes Congés</span>  
+        </a>
+      </li>
+    
+    
+    
+  
+    <li>
+      <a href="#">
+        <i class='bx bxs-message-dots' ></i>
+        <span class="text">Message</span>
+      </a>
+    </li>
+    <li title="Équipe" *ngIf="userProfile?.role !== 'CHEF' && userProfile?.role !== 'EMPLOYEE'">
+      <a  (click)="redirectToGererUsers()">
+        <i class='bx bxs-group'></i>
+        <span  class="text">Équipe</span>
+      </a>
+    </li>
+    <li title="Équipe"       [routerLink]="['/mesemployes']"   *ngIf="userProfile?.role !== 'ADMIN' && userProfile?.role !== 'EMPLOYEE'">
+      <a >
+        <i class='bx bxs-group'></i>
+        <span class="text">Équipe</span>
+      </a>
+    </li>
+
+    <li title="Demandes"       *ngIf="userProfile?.role !== 'ADMIN' && userProfile?.role !== 'EMPLOYEE'" >
+      <a  (click)="redirectToDemandes()">
+        <i class='bx bxs-archive archive-icon'></i>
+        <span   class="text">Demandes</span>
+      </a>
+    </li>
+    <li title="Archive"  *ngIf="userProfile?.role !== 'ADMIN' && userProfile?.role !== 'EMPLOYEE'">
+      <a  (click)="redirectToArchive()">
+        <i class='bx bxs-archive-in' ></i>
+                <span   class="text">Archive</span>
+      </a>
+    </li>
+
+
+    <li title="Calendrier"  *ngIf="userProfile?.role !== 'EMPLOYEE' " >
+      <a  (click)="redirectToCalendrier()">
+        <i class='bx bxs-calendar'></i>  
+              <span   class="text">Calendrier</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bxs-doughnut-chart' ></i>
+        <span class="text">Analytics</span>
+      </a>
+    </li>
+  </ul>
+  <ul class="side-menu">
+    <li  title="Paramètres"  [routerLink]="['/parametre']">
+      <a>
+        <i class='bx bxs-cog' ></i>
+        <span class="text">Paramètres </span>
+      </a>
+    </li>
+    <li title="Déconnexion" >
+      <a (click)="onLogout()" class="logout">
+        <i class='bx bxs-log-out-circle' ></i>
+        <span class="text" >Déconnexion</span>
+      </a>
+    </li>
+  </ul>
+</section>
+
+<!-- SIDEBAR -->

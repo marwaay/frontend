@@ -1,0 +1,68 @@
+@import url(../../home.css);
+
+@media (min-width: 992px) {
+  #mainNav {
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+  }
+  #mainNav .navbar-brand {
+    padding: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  #mainNav .nav-link {
+    transition: none;
+    padding: 2rem 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  #mainNav .nav-link:hover {
+    color: rgba(255, 255, 255, 0.75);
+  }
+  #mainNav .nav-link:active {
+    color: #fff;
+  }
+  #mainNav.navbar-shrink {
+    background-color: #fff;
+  }
+  #mainNav.navbar-shrink .navbar-brand {
+    color: #261b91;
+  }
+  #mainNav.navbar-shrink .nav-link {
+    color: #261b91;
+    padding: 1.5rem 1.5rem 1.25rem;
+    border-bottom: 0.25rem solid transparent;
+  }
+ 
+
+}
+
+.navlink {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Change font style */
+  font-size: 18px; 
+}
+
+
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff; /* Set background color for the box */
+    padding: 10px; /* Add padding for the box */
+    border-radius: 5px; /* Add border radius for the box */
+  }
+  .navbar-nav .nav-item {
+    margin-bottom: 10px;
+  }
+}
+
+/* nav bar */
+@media (max-width: 991.98px) { /* Adjust breakpoint as needed */
+  .navbar {
+      position: fixed;
+      width: 100%;
+      background-color: white;
+      z-index: 1000; /* Ensure it stays above other content */
+  }
+}

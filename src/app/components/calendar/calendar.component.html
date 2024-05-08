@@ -1,0 +1,37 @@
+
+<!-- Boxicons -->
+<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+<!-- My CSS -->
+<link rel="stylesheet" href="/assets/css/style.css">
+<!-- My js -->
+<script src="/assets/js/script.js"></script>
+<app-sidebar ></app-sidebar>
+<!-- CONTENT -->
+<div >
+<section id="content" >
+<app-navbar></app-navbar>
+
+  <!-- MAIN -->
+  <main>
+    <div class="head-title">
+      <div class="left">
+        <h1>Calendrier</h1>
+        <ul class="breadcrumb">
+          <li>
+            <a href="#">Calendrier</a>
+          </li>
+          <li><i class='bx bx-chevron-right' ></i></li>
+          <li (click)="redirectToHome()">
+            <a class="active" >Acceuil</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+<div class="calendar-container">
+    <full-calendar   [options]="calendarOptions">
+        <ng-template #eventContent let-arg>
+            <b>{{arg.timeText}}</b>
+            <i>{{arg.event.title}}</i>
+        </ng-template>
+    </full-calendar>
+</div>
