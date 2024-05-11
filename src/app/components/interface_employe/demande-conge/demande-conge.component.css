@@ -1,16 +1,15 @@
 .background-box {
-  background-color: #f0f0f0;
+  background-color: #F9F9F9;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh; /* Change height to min-height */
+  min-height: 80vh; 
 }
 
 .formulaire-container {
-  background-color: #fff;
-  padding: 10px 20px 30px; /* Adjust top padding to move inputs up */
+  background-color: #F9F9F9;
+  padding: 10px 20px 30px;
   border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   width: 100%;
   overflow-y: auto;
   display: flex;
@@ -25,7 +24,6 @@
 }
 
 
-/* Other CSS styles remain the same */
 .form-group {
   margin-bottom: 20px;
 }
@@ -86,9 +84,9 @@ label {
 
 .input-container {
   flex: 1;
-  margin-right: 10px; /* Adjust spacing between input containers */
+  margin-right: 10px; 
 }
 
 .input-container:last-child {
-  margin-right: 0; /* Remove right margin for the last input container */
+  margin-right: 0; 
 }

@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { CountType } from '../../../models/charts/CountType';
+import { Component } from '@angular/core';
 import { CongeChartService } from '../../../services/charts/conge-chart.service';
-import { Chart,  registerables } from 'chart.js';
+import { CountSexe } from '../../../models/charts/CountSexe';
+import { Chart, registerables } from 'chart.js';
 
 @Component({
-  selector: 'app-congechart',
-  templateUrl: './congechart.component.html',
-  styleUrl: './congechart.component.css'
+  selector: 'app-sexe-chart',
+  templateUrl: './sexe-chart.component.html',
+  styleUrl: './sexe-chart.component.css'
 })
-export class CongechartComponent  implements OnInit{
+export class SexeChartComponent {
   chart: any;
-  countTypes: CountType[] = [];
+  countsexe: CountSexe[] = [];
 
   constructor(private congeService: CongeChartService) { }
 
@@ -19,10 +19,10 @@ export class CongechartComponent  implements OnInit{
   }
 
   fetchData(): void {
-    this.congeService.getPercentageGroupByType()
+    this.congeService.getPercentageGroupBySexe()
       .subscribe(data => {
-        this.countTypes = data;
-        console.log('Percentage data:', this.countTypes);
+        this.countsexe = data;
+        console.log('Percentage data:', this.countsexe);
         this.renderChart();
       });
   }
@@ -37,10 +37,10 @@ export class CongechartComponent  implements OnInit{
       this.chart = new Chart(ctx, {
         type: 'pie', // Change chart type to pie
         data: {
-          labels: this.countTypes.map(countType => countType.type),
+          labels: this.countsexe.map(countType => countType.sexe),
           datasets: [{
             label: 'Count by Type',
-            data: this.countTypes.map(countType => countType.count),
+            data: this.countsexe.map(countType => countType.count),
             backgroundColor: [
               'rgba(255, 99, 132, 0.6)',
               'rgba(54, 162, 235, 0.6)',

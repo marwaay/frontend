@@ -5,12 +5,14 @@
 <!-- My js -->
 <script src="/assets/js/script.js"></script>
 <!-- SIDEBAR -->
-<section id="sidebar" >
-    <a><img src="../../../assets/img/2-removebg-preview (1).png" style="width: 250px; height: auto;"></a>
+<section id="sidebar">
+  <a id="sidebar-toggle"><img src="../../../assets/img/2-removebg-preview (1).png" style="width: 250px; height: auto;"></a>
+
+
 
   <ul class="side-menu top">
     <li class="active">
-      <a href="#">
+      <a href="#" (click)="redirectTodashbboard()">
         <i class='bx bxs-dashboard' ></i>
         <span class="text">Dashboard</span>
       </a>
@@ -33,12 +35,6 @@
     
     
   
-    <li>
-      <a href="#">
-        <i class='bx bxs-message-dots' ></i>
-        <span class="text">Message</span>
-      </a>
-    </li>
     <li title="Équipe" *ngIf="userProfile?.role !== 'CHEF' && userProfile?.role !== 'EMPLOYEE'">
       <a  (click)="redirectToGererUsers()">
         <i class='bx bxs-group'></i>
@@ -73,9 +69,9 @@
       </a>
     </li>
     <li>
-      <a href="#">
+      <a  (click)="redirectToNotifications()" >
         <i class='bx bxs-doughnut-chart' ></i>
-        <span class="text">Analytics</span>
+        <span class="text"  >Notifications</span>
       </a>
     </li>
   </ul>
@@ -94,5 +90,21 @@
     </li>
   </ul>
 </section>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var sidebarToggle = document.getElementById('sidebar-toggle');
+    var logoImg = sidebarToggle.querySelector('img');
 
-<!-- SIDEBAR -->
+    sidebarToggle.addEventListener('click', function() {
+        var sidebar = document.getElementById('sidebar');
+        if (sidebar.classList.contains('hide')) {
+            
+            logoImg.style.display = 'none';
+        } else {
+
+            logoImg.style.display = 'block';
+        }
+    });
+});
+
+</script>

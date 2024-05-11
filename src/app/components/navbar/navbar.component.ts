@@ -16,7 +16,7 @@ import { Personnel } from '../../models/Personnel';
 export class NavbarComponent implements OnInit {
   personnel: Personnel = new Personnel();
   dropdownOpen: boolean = false;
-  userProfile !: Personnel;
+  userProfile: any = null;
   selectedNotification: any;
 
 

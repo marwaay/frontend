@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CongeListComponent } from './conge-list.component';
+import { PercongechartComponent } from './percongechart.component';
 
-describe('CongeListComponent', () => {
-  let component: CongeListComponent;
-  let fixture: ComponentFixture<CongeListComponent>;
+describe('PercongechartComponent', () => {
+  let component: PercongechartComponent;
+  let fixture: ComponentFixture<PercongechartComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CongeListComponent]
+      declarations: [PercongechartComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CongeListComponent);
+    fixture = TestBed.createComponent(PercongechartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

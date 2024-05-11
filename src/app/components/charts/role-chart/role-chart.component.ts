@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { CountType } from '../../../models/charts/CountType';
 import { CongeChartService } from '../../../services/charts/conge-chart.service';
-import { Chart,  registerables } from 'chart.js';
+import { Chart, registerables } from 'chart.js';
+import { CountRole } from '../../../models/charts/CountRole';
 
 @Component({
-  selector: 'app-congechart',
-  templateUrl: './congechart.component.html',
-  styleUrl: './congechart.component.css'
+  selector: 'app-role-chart',
+  templateUrl: './role-chart.component.html',
+  styleUrl: './role-chart.component.css'
 })
-export class CongechartComponent  implements OnInit{
+export class RoleChartComponent implements OnInit {
   chart: any;
-  countTypes: CountType[] = [];
+  countRoles: CountRole[] = [];
 
   constructor(private congeService: CongeChartService) { }
 
@@ -19,14 +19,15 @@ export class CongechartComponent  implements OnInit{
   }
 
   fetchData(): void {
-    this.congeService.getPercentageGroupByType()
+    this.congeService.getCountByRole()
       .subscribe(data => {
-        this.countTypes = data;
-        console.log('Percentage data:', this.countTypes);
+        // Filter out the "admin" role
+        this.countRoles = data.filter(countRole => countRole.type !== 'ADMIN');
+        console.log('Percentage data:', this.countRoles);
         this.renderChart();
       });
   }
- 
+  
   renderChart(): void {
     Chart.register(...registerables);
   
@@ -35,12 +36,12 @@ export class CongechartComponent  implements OnInit{
   
     if (ctx) {
       this.chart = new Chart(ctx, {
-        type: 'pie', // Change chart type to pie
+        type: 'bar', // Change chart type to bar
         data: {
-          labels: this.countTypes.map(countType => countType.type),
+          labels: this.countRoles.map(countType => countType.type),
           datasets: [{
             label: 'Count by Type',
-            data: this.countTypes.map(countType => countType.count),
+            data: this.countRoles.map(countType => countType.count),
             backgroundColor: [
               'rgba(255, 99, 132, 0.6)',
               'rgba(54, 162, 235, 0.6)',

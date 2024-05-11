@@ -15,7 +15,6 @@ import { LogoutComponent } from './login/logout/logout.component';
 import { ChangePasswordComponent } from './personnel/change-password/change-password.component';
 import { ForgotPasswordComponent } from './login/password/forgot-password/forgot-password.component';
 import { SetPasswordComponent } from './login/password/set-password/set-password.component';
-import { CongeListComponent } from './conge/conge-list/conge-list.component';
 import { HomeComponent } from './home/home.component';
 import { NavigationComponent } from './Acceuil/navigation/navigation.component';
 import { HeaderComponent } from './Acceuil/header/header.component';
@@ -46,9 +45,11 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { DemandeCongeComponent } from './components/interface_employe/demande-conge/demande-conge.component';
 import { MescongesComponent } from './components/interface_employe/mesconges/mesconges.component';
 import { CongechartComponent } from './components/charts/congechart/congechart.component';
-
 import en from '@angular/common/locales/en';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ChangermdpComponent } from './components/changermdp/changermdp.component';
+import { RoleChartComponent } from './components/charts/role-chart/role-chart.component';
+import { SexeChartComponent } from './components/charts/sexe-chart/sexe-chart.component';
+import { PercongechartComponent } from './components/charts/percongechart/percongechart.component';
 
 registerLocaleData(en);
 
@@ -69,7 +70,7 @@ registerLocaleData(en);
     ChangePasswordComponent,
     ForgotPasswordComponent,
     SetPasswordComponent,
-    CongeListComponent,
+    
     HomeComponent,
     NavigationComponent,
     HeaderComponent,
@@ -96,7 +97,13 @@ registerLocaleData(en);
    
 DemandeCongeComponent,
      MescongesComponent,
-     CongechartComponent
+     CongechartComponent,
+     ChangermdpComponent,
+     RoleChartComponent,
+     SexeChartComponent,
+     PercongechartComponent,
+     
+   
   ],
   imports: [
     BrowserModule,
@@ -111,7 +118,6 @@ DemandeCongeComponent,
    FullCalendarModule 
   ],
   providers: [
-  
   ],
   bootstrap: [AppComponent]
   

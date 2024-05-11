@@ -12,6 +12,8 @@ import { UserService } from '../../services/profile/user.service';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements AfterViewInit{
+
+
   personnel: Personnel = new Personnel();
   userId: number | undefined;
   userProfile: any = null;
@@ -106,6 +108,14 @@ export class SidebarComponent implements AfterViewInit{
     this.router.navigate(['conge/afficherconges']);
 
   }
+  redirectToNotifications() {
+    this.router.navigate(['notifications']);
+  }
+
+  redirectTodashbboard() {
+    this.router.navigate(['/homee']);
+
+    }
 
   ngOnInit(): void {
     this.profileService.getUserProfile().subscribe(

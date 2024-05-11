@@ -16,9 +16,9 @@ export class CalendarComponent  implements OnInit{
     plugins: [dayGridPlugin],
     initialView: 'dayGridMonth',
     businessHours: {
-      daysOfWeek: [1, 2, 3, 4, 5], // Monday through Friday
-      startTime: '08:00', // Start time for the business hours
-      endTime: '18:00' // End time for the business hours
+      daysOfWeek: [1, 2, 3, 4, 5], 
+      startTime: '08:00', 
+      endTime: '18:00' 
     },
     events: []
   };
@@ -32,13 +32,7 @@ export class CalendarComponent  implements OnInit{
   loadConges() {
     this.chefService.getCongesConfirmes().subscribe({
       next: (conges) => {
-        this.calendarOptions.events = conges.map((conge) => {
-          return {
-            title: "Congé",
-            start: new Date(conge.date_debut), 
-            end: new Date(conge.date_fin)
-          };
-        });
+        this.calendarOptions.events = this.mapCongesToEvents(conges);
       },
       error: (error) => {
         console.error('Error loading conges:', error);
@@ -46,6 +40,34 @@ export class CalendarComponent  implements OnInit{
       }
     });
   }
+  
+  mapCongesToEvents(conges: any[]): any[] {
+    const events: any[] = [];
+    const serviceColors: { [service: string]: string } = {}; // Object to store service-color mapping
+  
+    conges.forEach((conge) => {
+      const service = conge.service; // Assuming you have a service property in conge object
+      if (!serviceColors[service]) {
+        // Assign a color to the service if not already assigned
+        serviceColors[service] = this.generateRandomColor();
+      }
+      events.push({
+        title: "Congé",
+        start: new Date(conge.date_debut), 
+        end: new Date(conge.date_fin),
+        backgroundColor: serviceColors[service]
+      });
+    });
+  
+    return events;
+  }
+  
+  generateRandomColor(): string {
+    // Generate a random hex color
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+  
+  
   redirectToHome() {
     this.router.navigate(['/homee']);
   }

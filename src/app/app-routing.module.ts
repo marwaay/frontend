@@ -31,6 +31,11 @@ import { MesemployesComponent } from './components/interface_chef/mesemployes/me
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { MescongesComponent } from './components/interface_employe/mesconges/mesconges.component';
 import { DemandeCongeComponent } from './components/interface_employe/demande-conge/demande-conge.component';
+import { ChangermdpComponent } from './components/changermdp/changermdp.component';
+import { CongechartComponent } from './components/charts/congechart/congechart.component';
+import { RoleChartComponent } from './components/charts/role-chart/role-chart.component';
+import { SexeChartComponent } from './components/charts/sexe-chart/sexe-chart.component';
+import { PercongechartComponent } from './components/charts/percongechart/percongechart.component';
 
 
 
@@ -67,6 +72,14 @@ const routes: Routes = [
 { path:"mesemployes",component:MesemployesComponent},
 {path:"calendrier",component:CalendarComponent},
 {path:"mesconges",component:MescongesComponent},
+{path:"parametre/changermdp", component:ChangermdpComponent},
+{path:"congechart", component:CongechartComponent},
+{path:"rolechart", component:RoleChartComponent},
+{path:"sexechart", component:SexeChartComponent},
+{path:"perchart", component:PercongechartComponent},
+
+
+
 ];
 
 @NgModule({

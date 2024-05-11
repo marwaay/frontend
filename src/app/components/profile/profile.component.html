@@ -22,8 +22,9 @@
       </div>
     </div>
 
-    <div class="table-data">
-      <div class="order">
+
+    <div class="formulaire">
+
         <div class="head">
           <h3>Modifier Profile</h3>
         </div>
@@ -52,9 +53,10 @@
             <div class="form-group col-md-6">
               <label for="nbr_enfant">Nombre d'enfants :</label>
               <input type="text" formControlName="nbr_enfant" class="form-control rounded-custom" [ngClass]="{ 'invalid-input': submitted && userForm.controls['nbr_enfant'].errors?.['required'] }"><br>
-              <span *ngIf="submitted && userForm.controls['nbr_enfant'].errors?.['required']" class="text-danger">Nombre d'enfants requis</span>
+              <!-- <span *ngIf="submitted && userForm.controls['nbr_enfant'].errors?.['required']" class="text-danger">Nombre d'enfants requis</span> --> 
               <span *ngIf="submitted && userForm.controls['nbr_enfant']?.errors?.['invalidNumberOfChildren']" class="text-danger">Nombre d'enfants invalide</span>
             </div>
+            
           </div>
 
           <div class="form-row">
@@ -85,12 +87,13 @@
 
             <div class="form-group col-md-6">
               <label for="matricule">Matricule :</label>
-              <input type="text" formControlName="matricule" class="form-control rounded-custom" [ngClass]="{ 'invalid-input': submitted && userForm.get('matricule')?.errors }"><br>
+              <input type="text" formControlName="matricule" class="form-control rounded-custom" [ngClass]="{ 'invalid-input': submitted && userForm.get('matricule')?.errors }" readonly><br>
               <span *ngIf="submitted && userForm.controls['matricule'].errors?.['required']" class="text-danger">Email requis</span>
             </div>
+            
           </div>
 
-          <br><br>
+          <br>
 
           <div class="form-actions">
             <button type="submit" class="btn btn-primary" (click)="ModifierProfil()">Modifier</button>&nbsp;
@@ -99,7 +102,6 @@
         </form>
 
       </div>
-    </div>
 
   </main>
 </section>

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrl: './parametres.component.css'
 })
 export class ParametresComponent {
+
   constructor(private router: Router, ) { }
 
   redirectToAfficherChefs(): void {

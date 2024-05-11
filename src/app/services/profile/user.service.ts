@@ -26,6 +26,12 @@ export class UserService {
     );
   }
 
+getUserId():Observable<number> {
+  return this.getUserProfile().pipe(
+    map((profile: any) => profile.id)
+  );
+}
+
   getUserCivilStatus(): Observable<string> {
     return this.getUserProfile().pipe(
       map((profile: any) => profile.statut)
@@ -37,7 +43,15 @@ export class UserService {
     );
   }
   
-  url = "http://localhost:8080/personnels";
+
+
+  getUserPassword(): Observable<string>
+{
+return this.getUserProfile().pipe(
+  map((profile: any) => profile.password)
+
+);
+}  url = "http://localhost:8080/personnels";
 
   searchUsers(query: string) {
     return this.http.get<any[]>(this.url +'/searchuser', { params: { query: query } });

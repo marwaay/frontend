@@ -12,7 +12,7 @@ import { Personnel } from '../../models/Personnel';
 })
 export class ProfileComponent implements OnInit {
   userForm !: FormGroup;
-  userProfile: any;
+  userProfile: any ;
   userId: number | undefined;
   submitted: boolean = false;
 
@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
     this.profileService.getUserProfile().subscribe(
       (data: any) => {
         this.userProfile = data;

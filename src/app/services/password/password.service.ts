@@ -39,6 +39,20 @@ import { ChangePasswordRequest } from '../../models/changePasswordRequest';
 
     return this.http.put<string>(`${this.apiUrl}/set-password`, null, { params: params });
   }
+
+
+
+
+  changPassword(oldPassword: string, email: string, newPassword: string, confirmPassword: string) {
+    return this.http.put(`${this.apiUrl}/change-password`, {
+      oldPassword,
+      email,
+      newPassword,
+      confirmPassword
+    });
+  }
+
+
 }
 
   

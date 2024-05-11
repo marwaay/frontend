@@ -1,0 +1,81 @@
+
+<!-- Boxicons -->
+<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+<!-- My CSS -->
+<link rel="stylesheet" href="/assets/css/style.css">
+<!-- My js -->
+<script src="/assets/js/script.js"></script>
+<app-sidebar ></app-sidebar>
+<!-- CONTENT -->
+<div >
+<section id="content" >
+<app-navbar></app-navbar>
+
+  <!-- MAIN -->
+  <main>
+    <div class="head-title">
+      <div class="left">
+        <h1>Changer Mot De Passe</h1>
+        <ul class="breadcrumb">
+          <li>
+            <a href="#">sécurité</a>
+          </li>
+          <li><i class='bx bx-chevron-right' ></i></li>
+          <li (click)="redirectToHome()">
+            <a class="active" >Acceuil</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+<div class="form-container">
+  <div class="alert" [ngClass]="{'alert-success': message === 'Password Changed!!', 'alert-danger': message === 'Failed to change password. Please try again.'}" *ngIf="message">{{ message }}</div>
+
+
+  <form (ngSubmit)="changePassword()" class="form">
+
+  
+
+
+    <div class="input-group">
+      <label>Email:</label>
+      <input type="text" [(ngModel)]="email" name="oldpassword" required>
+  </div>
+
+
+
+      <div class="input-group">
+          <label>Ancien Mot De Passe:</label>
+          <input type="text" [(ngModel)]="passwordin" name="oldpassword" required>
+      </div>
+
+
+
+<div class="input-group">
+  <label>Nouveau Mot De Passe :</label>
+
+
+  <div class="password-input" [ngClass]="{'show-password': showNewPassword}">
+    <input type="{{ showNewPassword ? 'text' : 'password' }}" [(ngModel)]="newPassword" name="newPassword" required>
+    <div class="toggle-password" (click)="togglePasswordVisibility('newPassword')">
+        <i class="fa" [ngClass]="showNewPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+    </div>
+</div>
+
+</div>
+
+<div class="input-group">
+  <label>Confirm Mot De Passe :</label>
+  <div class="password-input">
+    <input type="{{ showConfirmPassword ? 'text' : 'password' }}" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+    <div class="toggle-password" (click)="togglePasswordVisibility('confirmPassword')">
+      <i class="fa" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+    </div>
+  </div>
+</div>
+
+      <br>
+      <button type="submit" class="btn btn-primary">Set Password</button>
+  </form>
+</div>

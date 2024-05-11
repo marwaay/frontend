@@ -27,23 +27,24 @@
       </div>
 
     </div>
-
     <ul class="box-info">
-      <li >
+      <li>
         <i class='bx bx-lock'></i>
         <span class="text">
           <h3>Sécurité</h3>
-          <p></p>
+          <p><a href="#" [routerLink]="['changermdp']"  style="color: grey;">Changer le mot de passe</a></p>
         </span>
       </li>
-
-
     </ul>
+    
+    
 <ul class="box-info">
-  <li   [routerLink]="['/auth/profile']">
+  <li  >
     <i class="bx bx-user"></i>
     <span class="text">
       <h3>Modifier Profil</h3>
+      <p><a href="#"  [routerLink]="['/auth/profile']" style="color: grey;">Changer vos données</a></p>
+
       <p></p>
     </span>
   </li>
