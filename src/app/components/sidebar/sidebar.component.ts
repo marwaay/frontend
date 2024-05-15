@@ -1,6 +1,6 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { LogoutService } from '../../services/logout/logout.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Personnel } from '../../models/Personnel';
@@ -11,7 +11,7 @@ import { UserService } from '../../services/profile/user.service';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
-export class SidebarComponent implements AfterViewInit{
+export class SidebarComponent implements  AfterViewInit{
 
 
   personnel: Personnel = new Personnel();
@@ -20,15 +20,20 @@ export class SidebarComponent implements AfterViewInit{
 
   
   constructor(private logoutService: LogoutService, private router: Router, private httpClient: HttpClient, private profileService:UserService) { }
-//js
+ 
+
+  //js
+
   ngAfterViewInit(): void {
+    this.initSidebar();
+  }
+  private initSidebar(): void {
     const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
     const menuBar = document.querySelector('#content nav .bx.bx-menu');
     const sidebar = document.getElementById('sidebar');
-    const switchMode = document.getElementById('switch-mode');
     const content = document.getElementById('content');
 
-    if (allSideMenu && menuBar && sidebar  && content) {
+    if (allSideMenu && menuBar && sidebar && content) {
       allSideMenu.forEach(item => {
         item.addEventListener('click', function(event) {
           event.preventDefault();
@@ -44,22 +49,11 @@ export class SidebarComponent implements AfterViewInit{
         if (sidebar.classList.contains('hide')) {
           content.style.width = 'calc(100% - 60px)';
           content.style.left = '60px';
-        }
-        else {
+        } else {
           content.style.width = 'calc(100% - 280px)';
           content.style.left = '280px';
         }
       });
-
-
- /*  switchMode.addEventListener('change', function() {
-        if (switchMode instanceof HTMLInputElement) {
-          document.body.classList.toggle('dark', switchMode.checked);
-        }
-      });
-*/
-
-
 
       window.addEventListener('resize', function() {
         if (sidebar && content) {
@@ -69,55 +63,57 @@ export class SidebarComponent implements AfterViewInit{
         }
       });
     }
-
-
-    function ajusterMenuLatéral() {
-      if (window.innerWidth < 768 && sidebar) {
-        sidebar.classList.add('hide');
-
-      }
-    }
   }
+    
+ 
 
-//redirecte vers home
   redirectToGererUsers() {
     this.router.navigate(['/admin/gererusers']);
   }
 
-
-  //redirecte vers archive
   redirectToArchive() {
     this.router.navigate(['/archive']);
   }
 
-  redirectToAjouerConges(){
+  redirectToAjouerConges() {
     this.router.navigate(['conge/demandeconge']);
-
   }
 
-  redirectToMesConges(){
+  redirectToMesConges() {
     this.router.navigate(['mesconges']);
-
   }
 
-  redirectToCalendrier(){
+  redirectToCalendrier() {
     this.router.navigate(['calendrier']);
-
   }
-  redirectToDemandes(){
+
+  redirectToDemandes() {
     this.router.navigate(['conge/afficherconges']);
-
   }
+
   redirectToNotifications() {
     this.router.navigate(['notifications']);
   }
 
   redirectTodashbboard() {
     this.router.navigate(['/homee']);
+  }
 
-    }
 
   ngOnInit(): void {
+
+
+
+
+     // Écoute des événements de navigation du routeur
+     this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Recharge la page lorsque la navigation est terminée
+        window.location.reload();
+      }
+    });
+
+    
     this.profileService.getUserProfile().subscribe(
       (data: any) => {
         this.userProfile = data;
@@ -154,5 +150,5 @@ export class SidebarComponent implements AfterViewInit{
   toggleSecondaryElements() {
     this.showSecondaryElements = !this.showSecondaryElements; // Toggle the boolean value
   }
-    
+ 
 }

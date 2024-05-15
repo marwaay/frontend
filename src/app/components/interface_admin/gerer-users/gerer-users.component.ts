@@ -26,7 +26,7 @@ export class GererUsersComponent {
   }
 
 redirectToHome() {
-  this.router.navigate(['/home']);
+  this.router.navigate(['/homee']);
 }
 obtenirNombreDeChefs(): void {
   this.afficherusersService.obtenirNombreDeChefs().subscribe(nombre => {

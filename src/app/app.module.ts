@@ -102,6 +102,7 @@ DemandeCongeComponent,
      RoleChartComponent,
      SexeChartComponent,
      PercongechartComponent,
+   
      
    
   ],

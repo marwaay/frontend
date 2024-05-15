@@ -51,8 +51,8 @@
         </div>
         <tbody>
           <tr *ngFor="let notification of notifications">
-            <td (click)="showNotificationContent(notification)">
-              <a [routerLink]="['/notification', notification.id]" [ngStyle]="{ color: notification.lu === 1 ? 'grey' : 'inherit' }">{{ notification.subject }}</a>
+            <td (click)="showNotificationContent(notification)"     [routerLink]="['/notification', notification.id]">
+              <a  [ngStyle]="{ color: notification.lu === 1 ? 'grey' : 'inherit' }">{{ notification.subject }}</a>
               <span class="delete-icon" title="Supprimer" (click)="deleteNotification(notification)">
                 <i class="fas fa-times"></i>
               </span>

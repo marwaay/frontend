@@ -1,17 +1,17 @@
 
-<!-- Boxicons -->
+
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-<!-- My CSS -->
+
 <link rel="stylesheet" href="/assets/css/style.css">
-<!-- My js -->
+
 <script src="/assets/js/script.js"></script>
 <app-sidebar ></app-sidebar>
-<!-- CONTENT -->
+
 <div >
 <section id="content" >
 <app-navbar></app-navbar>
 
-  <!-- MAIN -->
+
   <main>
     <div class="head-title">
       <div class="left">
@@ -26,16 +26,13 @@
           </li>
         </ul>
       </div>
-      <a href="#" class="btn-download">
-        <i class='bx bxs-cloud-download' ></i>
-        <span class="text">Download PDF</span>
-      </a>
+   
     </div>
 
-    <ul class="box-info">
+    <ul class="box-info"  *ngIf="userProfile?.role !== 'ADMIN' && userProfile?.role !== 'CHEF'" >
       <ul>
         <li>
-          <i class='bx bxs-calendar-check'></i>
+          <i class=" bx fas fa-hourglass"></i>
           <span class="text">
             <h3>{{ solde }}</h3>
             <p>SOLDE</p>
@@ -43,68 +40,53 @@
         </li>
       </ul>
       
-      <ul>
-        <li>
-          <i class='bx bxs-group'></i>
-          <span class="text">
-            <p>Visitors</p>
-          </span>
-        </li>
-      </ul>
-      
       <li>
-        <i class='bx bxs-dollar-circle' ></i>
+        <i class='bx bxs-calendar-check'></i> 
         <span class="text">
-          <h3>$2543</h3>
-          <p>Total Sales</p>
+          <h3>{{ congesCount }}</h3>
+          <p>DEMANDES</p>
         </span>
       </li>
+      
+     
+  <li>
+    <i class=" bx fas fa-check-circle"></i>
+    <span class="text">
+      <h3>{{ percentageOfConfirmedConges }}%</h3>
+      <p> CONFIRMES ({{ countOfCongesConfirmer }})</p>
+    </span>
+  </li>
+ 
     </ul>
 
 
+
     <div class="table-data">
-      <div class="order">
-        <div class="head">
-        
-          <app-percongechart></app-percongechart>
-          
-        </div>
-        
-      </div>
-      <div class="todo">
-        <div class="head">
-          <h3>Todos</h3>
-          <i class='bx bx-plus' ></i>
-          <i class='bx bx-filter' ></i>
-        </div>
-        <ul class="todo-list">
-          <li class="completed">
-            <p>Todo List</p>
-            <i class='bx bx-dots-vertical-rounded' ></i>
-          </li>
-          <li class="completed">
-            <p>Todo List</p>
-            <i class='bx bx-dots-vertical-rounded' ></i>
-          </li>
-          <li class="not-completed">
-            <p>Todo List</p>
-            <i class='bx bx-dots-vertical-rounded' ></i>
-          </li>
-          <li class="completed">
-            <p>Todo List</p>
-            <i class='bx bx-dots-vertical-rounded' ></i>
-          </li>
-          <li class="not-completed">
-            <p>Todo List</p>
-            <i class='bx bx-dots-vertical-rounded' ></i>
-          </li>
-        </ul>
-      </div>
+  <app-percongechart  *ngIf="userProfile?.role !== 'ADMIN' && userProfile?.role !== 'CHEF'"></app-percongechart>
+
+  <app-congechart *ngIf="userProfile?.role !== 'EMPLOYEE' && userProfile?.role !== 'ADMIN'"></app-congechart>
+
+
+ 
+  <div *ngIf="userProfile?.role !== 'EMPLOYEE' && userProfile?.role !== 'CHEF'">
+    <app-role-chart *ngIf="userProfile"></app-role-chart>
+
+
+
+
+</div>
     </div>
-  </main>
-  <!-- MAIN -->
+        
+     
+
+   
+      
+  </main> 
+ 
+  
 </section>
 </div>
-<!-- CONTENT -->
+
+
 
 

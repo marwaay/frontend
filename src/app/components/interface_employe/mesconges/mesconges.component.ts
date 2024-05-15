@@ -134,10 +134,10 @@ openSearchBox(): void {
 
 searchCongess(query: string) {
   if (query.trim() !== '') {
-    this.profile.searchConges(query)
+    this.profile.searchCongess(query)
       .subscribe(
         (data) => {
-          this.conges = data;
+          this.conges =  data;
         },
         (error) => {
           this.conges=[];

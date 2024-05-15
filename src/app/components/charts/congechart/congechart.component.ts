@@ -25,8 +25,8 @@ export class CongechartComponent  implements OnInit{
         console.log('Percentage data:', this.countTypes);
         this.renderChart();
       });
+      
   }
- 
   renderChart(): void {
     Chart.register(...registerables);
   
@@ -35,18 +35,17 @@ export class CongechartComponent  implements OnInit{
   
     if (ctx) {
       this.chart = new Chart(ctx, {
-        type: 'pie', // Change chart type to pie
+        type: 'pie', 
         data: {
           labels: this.countTypes.map(countType => countType.type),
           datasets: [{
             label: 'Count by Type',
             data: this.countTypes.map(countType => countType.count),
             backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(153, 102, 255, 0.6)'
+              'rgba(153, 102, 255, 0.6)', 
+              'rgba(54, 162, 235, 0.6)',  
+              'rgba(75, 192, 192, 0.6)'     
+           
             ]
           }]
         },
@@ -66,4 +65,5 @@ export class CongechartComponent  implements OnInit{
       console.error('Failed to acquire context from the canvas element.');
     }
   }
+  
 }

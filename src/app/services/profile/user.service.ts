@@ -42,9 +42,14 @@ getUserId():Observable<number> {
       map((profile: any) => profile.solde)
     );
   }
-  
+  baseUrl = "http://localhost:8080"
 
-
+  getCountOfCongesByUser(userId: number): Observable<number> {
+    return this.http.get<number>(`http://localhost:8080/countByUser/${userId}`);
+  }
+  getCountOfCongesConfirmer(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/user/${userId}/confirmed/count-and-percentage`);
+  }
   getUserPassword(): Observable<string>
 {
 return this.getUserProfile().pipe(
@@ -56,11 +61,16 @@ return this.getUserProfile().pipe(
   searchUsers(query: string) {
     return this.http.get<any[]>(this.url +'/searchuser', { params: { query: query } });
   }
-  searchConges( type:string) {
+  searchConge( type:string) {
     return this.http.get<any[]>(this.url +'/searchconge', { params: {  type : type } });
   }
   searchCongess( query:string) {
     return this.http.get<any[]>(this.url +'/searchconge', { params: {  query: query } });
   }
+
+  searchConges(query: string) {
+    return this.http.get<any[]>(this.url + '/searchconge', { params: { query: query } });
+  }
+  
 }
 

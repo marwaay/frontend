@@ -108,7 +108,7 @@ searchUsers(query: string) {
     this.profile.searchUsers(query)
       .subscribe(
         (data: Personnel[]) => {
-          this.employes = data;
+          this.employes =  data.filter(employes=> employes.role !== 'CHEF' && employes.role !== 'ADMIN');
         },
         (error: any) => {
           this.employes = [];

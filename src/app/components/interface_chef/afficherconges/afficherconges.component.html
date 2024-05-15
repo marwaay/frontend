@@ -23,7 +23,7 @@
           </li>
           <li><i class='bx bx-chevron-right' ></i></li>
           <li>
-            <a class="active"  href="#" (click)="redirectToHome()">Acceuil</a>
+            <a class="active"  (click)="redirectToHome()">Acceuil</a>
           </li>
         </ul>
 
@@ -45,20 +45,20 @@
           <h3>Congés</h3>
           <i    class='bx bx-search' title="Rechercher" (click)="openSearchBox()" ></i>
           <div *ngIf="showSearchBox" class="search-box">
-            <input #searchInput type="text" placeholder="Rechercher ..." (keyup.enter)="searchcongess(searchInput.value)">
+            <input #searchInput type="text" placeholder="Rechercher ..."  (keyup.enter)="searchcongess(searchInput.value)"   >
           </div>            <i class='bx bx-filter' ></i>
         </div>
         <table>
           <thead>
             <tr>
-              <th>date demande</th>
-              <th>date debut</th>
-              <th>date fin</th>
+              <th>Date demande</th>
+              <th>Date debut</th>
+              <th>Date fin</th>
               <th>durée</th>
               <th>statut</th>
               <th>type</th>
               <th>motif</th>
-              <th>file</th>
+              <th>Justification</th>
               <th>Actions</th>
             </tr>
           </thead>

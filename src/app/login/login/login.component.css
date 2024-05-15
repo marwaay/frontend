@@ -267,19 +267,19 @@ h1, h2, h3, h4, h5,
   cursor: pointer;
 }
 
-/* Adjust the icon color and size as needed */
+
 .toggle-password i {
   color: #aaa;
   font-size: 18px;
 }
 .text-md-right a {
   display: inline-block;
-  margin-top: 20px; /* Adjust the margin to move the link down */
-  color: #261b91; /* Set the default color */
-  transition: color 0.3s ease-in-out; /* Add a color transition effect */
+  margin-top: 20px; 
+  color: #261b91; 
+  transition: color 0.3s ease-in-out;
 }
 
 .text-md-right a:hover {
-  color: #3a89ca; /* Change the color on hover */
+  color: #3a89ca; 
 }
 

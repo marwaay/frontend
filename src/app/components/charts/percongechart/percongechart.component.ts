@@ -14,30 +14,41 @@ import { Router } from '@angular/router';
   styleUrl: './percongechart.component.css'
 })
 export class PercongechartComponent {
-  user: number | undefined; // Assuming user ID is a number
-  countTypes: CountType[] = []; // Array to store CountType data
-  chart: any; // Variable to store the chart instance
+  user: number | undefined;
+  countTypesByType: CountType[] = [];
+  countTypesByStatut: CountType[] = [];
+  chart1: any;
+  chart2: any;
 
   constructor(private profileService: UserService, private dataService: CongeChartService) {}
 
   ngOnInit(): void {
-    // Fetch user ID
     this.profileService.getUserId().subscribe(
       (user: number) => {
         this.user = user;
         console.log('User ID:', this.user);
         
-        // Once you have the user ID, fetch data using this ID
+        // Fetch data for chart1
         this.dataService.getPercentageGroupByTypeForUser(this.user).subscribe(
           (data: CountType[]) => {
-            this.countTypes = data;
-            console.log('Data:', this.countTypes);
-            
-            // After receiving data, render the chart
-            this.renderChart();
+            this.countTypesByType = data;
+            console.log('Data for Chart 1:', this.countTypesByType);
+            this.renderChart1();
           },
           (error: any) => {
-            console.error('Error fetching data:', error);
+            console.error('Error fetching data for Chart 1:', error);
+          }
+        );
+
+        // Fetch data for chart2
+        this.dataService.getPercentageBystatut(this.user).subscribe(
+          (data: CountType[]) => {
+            this.countTypesByStatut = data;
+            console.log('Data for Chart 2:', this.countTypesByStatut);
+            this.renderChart2();
+          },
+          (error: any) => {
+            console.error('Error fetching data for Chart 2:', error);
           }
         );
       },
@@ -46,27 +57,28 @@ export class PercongechartComponent {
       }
     );
   }
-  renderChart(): void {
+
+  renderChart1(): void {
     Chart.register(...registerables);
   
-    const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+    const canvas = document.getElementById('canvas1') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
   
     if (ctx) {
-      this.chart = new Chart(ctx, {
-        type: 'pie', // Change chart type to pie
+      this.chart1 = new Chart(ctx, {
+        type: 'pie',  
         data: {
-          labels: this.countTypes.map(countType => countType.type),
+          labels: this.countTypesByType.map(countType => countType.type),
           datasets: [{
-            label: 'Count by Type',
-            data: this.countTypes.map(countType => countType.count),
+            label: 'Type',
+            data: this.countTypesByType.map(countType => countType.count),
             backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(153, 102, 255, 0.6)'
-            ]
+              'rgba(153, 102, 255, 0.6)', 
+              'rgba(54, 162, 235, 0.6)',  
+              'rgba(75, 192, 192, 0.6)' 
+            
+            ],
+            borderWidth: 1
           }]
         },
         options: {
@@ -78,11 +90,84 @@ export class PercongechartComponent {
               top: 0,
               bottom: 0
             }
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                font: {
+                  size: 14
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Pourcentage par Type',
+
+              font: {
+                size: 20,
+                weight: 'bold'
+              }
+            }
           }
         }
       });
     } else {
-      console.error('Failed to acquire context from the canvas element.');
+      console.error('Failed to acquire context from the canvas element for Chart 1.');
     }
   }
+
+  renderChart2(): void {
+    Chart.register(...registerables);
+
+    const canvas = document.getElementById('canvas2') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d');
+
+    if (ctx) {
+      const chartData = this.countTypesByStatut.length > 0 ? this.countTypesByStatut[0] : [];
+
+      this.chart2 = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['En attente', 'Confirmé', 'Rejeté'],
+          datasets: [{
+            label: 'Status',
+            data: chartData,
+            backgroundColor: [
+             'rgba(153, 102, 255, 0.6)', 
+              'rgba(54, 162, 235, 0.6)',  
+              'rgba(75, 192, 192, 0.6)' 
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                font: {
+                  size: 14
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Pourcentage par Statut',
+              font: {
+                size: 20,
+                weight: 'bold'
+              }
+            }
+          }
+        }
+      });
+    } else {
+      console.error('Failed to acquire context from the canvas element for Chart 2.');
+    }
+  }
+
 }

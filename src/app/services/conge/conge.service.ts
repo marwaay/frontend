@@ -16,7 +16,6 @@ export class CongeService {
 
   constructor(private http: HttpClient) { }
 
-  // Add a new Conge
   ajouterConge(conge: FormData): Observable<Conge> {
 return this.http.post<Conge>(`${this.baseUrl}/conge/ajouterconge`, conge);
   }

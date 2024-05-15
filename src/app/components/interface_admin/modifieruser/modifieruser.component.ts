@@ -14,6 +14,7 @@ export class ModifieruserComponent {
   userForm!: FormGroup;
   chef: Personnel = new Personnel();
   submitted: boolean = false;
+  selectedSexe!: string;
 
 
   constructor(
@@ -28,6 +29,8 @@ export class ModifieruserComponent {
     console.log(this.id)
     this.initForm();
     this.loadChef();
+    this.selectedSexe = this.chef.sexe;
+ 
   }
 
   initForm(): void {
@@ -35,14 +38,15 @@ export class ModifieruserComponent {
       nom: [this.chef.nom,  Validators.required],
       prenom: [this.chef.prenom, Validators.required ],
      statut: [this.chef.statut, Validators.required ],
-      nbr_enfant: [this.chef.nbrEnfant,[ Validators.required,this.validateNombreEnfant]],
+     nbrEnfant: [this.chef.nbrEnfant,this.validateNombreEnfant],
       service: [this.chef.service, Validators.required ],
       tel: [this.chef.tel, [Validators.required, this.validatePhoneNumber]],
       sexe: [this.chef.sexe,Validators.required],
       email: [this.chef.email,[Validators.required, this.validateEmail] ],
       matricule: [this.chef.matricule, Validators.required ],
       role: [this.chef.role,  Validators.required],
-      login: [this.chef.login, Validators.required]
+      login: [this.chef.login, Validators.required],
+      cin: [this.chef.cin, Validators.required]
     });
   }
 
@@ -82,19 +86,20 @@ export class ModifieruserComponent {
 
   validatePhoneNumber(control: AbstractControl): { [key: string]: any } | null {
     const phoneNumber = control.value;
-    const isValidNumber = /^\d{8}$/.test(phoneNumber);
+    const isValidNumber = /^\+216\d{8}$/.test(phoneNumber);
     const containsLetter = /[a-zA-Z]/.test(phoneNumber);
-
+  
     if (control.value && !isValidNumber) {
       return { 'invalidPhoneNumber': true };
     }
-
+  
     if (containsLetter) {
       return { 'invalidPhoneNumber': true, 'containsLetter': true };
     }
-
+  
     return null;
   }
+
   validateEmail(control: AbstractControl): { [key: string]: any }  | null {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (control.value && !emailPattern.test(control.value)) {

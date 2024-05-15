@@ -154,7 +154,8 @@ searchUsers(query: string) {
     this.profile.searchUsers(query)
       .subscribe(
         (data) => {
-          this.chefs = data;
+          this.chefs =  data.filter(chefs=> chefs.role !== 'EMPLOYEE'&&chefs.role !== 'ADMIN');
+
         },
         (error) => {
           this.chefs = [];

@@ -43,15 +43,24 @@ import { ChangePasswordRequest } from '../../models/changePasswordRequest';
 
 
 
-  changPassword(oldPassword: string, email: string, newPassword: string, confirmPassword: string) {
-    return this.http.put(`${this.apiUrl}/change-password`, {
-      oldPassword,
-      email,
-      newPassword,
-      confirmPassword
+  changPassword(email: string, oldPassword: string, newPassword: string, confirmPassword: string): Observable<string> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'oldPassword': oldPassword 
     });
+
+    const params = new HttpParams()
+      .set('email', email)
+      .set('newPassword', newPassword)
+      .set('confirmPassword', confirmPassword);
+
+    const options = { headers: headers, params: params };
+
+    return this.http.put<string>(`${this.baseUrl}/change-password`, {}, options);
   }
 
+
+  
 
 }
 

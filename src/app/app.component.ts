@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,3 +9,5 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent  {
 
 }
+
+

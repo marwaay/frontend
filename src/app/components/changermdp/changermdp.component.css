@@ -28,20 +28,17 @@
     margin-bottom: 5px;
   }
   
-  .input-group input[type="password"].password-visible,
-  .input-group input[type="email"],
-  .input-group input[type="password"] {
+  .input-group input {
     border-radius: 23px;
     border: 1px solid #ccc;
     padding: 10px;
-    width: 70%; 
+    width: 100%;
     font-family: Arial, sans-serif;
     font-size: 14px;
   }
-  
 
   
-  .input-group input[type="email"],
+  
   .input-group input[type="password"] {
     border-radius: 23px;
     border: 1px solid #ccc;
@@ -68,7 +65,7 @@
     position: relative;
   }
   
-  .input-group input[type="email"],
+ 
   .input-group input[type="password"] {
     border-radius: 23px;
     border: 1px solid #ccc;
@@ -78,14 +75,15 @@
     font-size: 14px;
   }
   
-  .toggle-password {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-  
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 70%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
   
   h2 {
     font-family: Arial, sans-serif; 
@@ -114,4 +112,8 @@
   
   
 
+
   
+
+
+

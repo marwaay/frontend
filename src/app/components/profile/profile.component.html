@@ -51,10 +51,10 @@
               <span *ngIf="submitted && userForm.controls['statut'].errors?.['required']" class="text-danger">Statut requis</span>
             </div>
             <div class="form-group col-md-6">
-              <label for="nbr_enfant">Nombre d'enfants :</label>
-              <input type="text" formControlName="nbr_enfant" class="form-control rounded-custom" [ngClass]="{ 'invalid-input': submitted && userForm.controls['nbr_enfant'].errors?.['required'] }"><br>
-              <!-- <span *ngIf="submitted && userForm.controls['nbr_enfant'].errors?.['required']" class="text-danger">Nombre d'enfants requis</span> --> 
-              <span *ngIf="submitted && userForm.controls['nbr_enfant']?.errors?.['invalidNumberOfChildren']" class="text-danger">Nombre d'enfants invalide</span>
+              <label for="nbrEnfant">Nombre d'enfants :</label>
+              <input type="text" formControlName="nbrEnfant" class="form-control rounded-custom" [ngClass]="{ 'invalid-input': submitted && userForm.controls['nbrEnfant'] }"><br>
+              <span *ngIf="submitted && userForm.controls['nbrEnfant'].errors?.['required']" class="text-danger">Nombre d'enfants requis</span> 
+              <span *ngIf="submitted && userForm.controls['nbrEnfant']?.errors?.['invalidNumberOfChildren']" class="text-danger">Nombre d'enfants invalide</span>
             </div>
             
           </div>

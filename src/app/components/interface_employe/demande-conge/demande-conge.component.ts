@@ -76,30 +76,30 @@ isWomanAndMarried(sexe: string, statut: string): boolean {
 ajouterConge(): void {
   if (!this.selectedFile) {
     this.showFiledError = true;
-    return; // Exit the method early
+    return; 
   }
 
-  // Reset file error message visibility
+
   this.showFiledError = false;
   this.congeService.getCurrentUserId().subscribe(
     (userId: number) => {
       const congee = this.FormCongee.value;
       congee.statut = 'En_Attente';
-      // Calculate the end date based on the start date and duration
+      // calculer date fin
       const startDate = new Date(congee.date_debut);
       const duration = congee.duree;
       const endDate = new Date(startDate.getTime() + duration * 24 * 60 * 60 * 1000);
 
-      // Update the form data with the calculated end date and the user ID
+      
       congee.date_fin = endDate.toISOString(); 
-      congee.user = userId; // Assign the fetched user ID to conge.user
+      congee.user = userId; 
 
-      // Create FormData object to send to backend
+     
       const formData = new FormData();
       formData.append('file', this.selectedFile);
       formData.append('conge', JSON.stringify(congee));
 
-      // Call the congeService to add the time off
+     
       this.congeService.ajouterConge(formData).subscribe(
         (data) => {
           if (data) {
@@ -150,12 +150,12 @@ onChange(event: any) {
 
 
 toggleTextarea(selectedValue: string): void {
-  // Use optional chaining operator to safely access the value
+  
   const motifControl = this.FormCongee.get('motif');
 
 
   if (motifControl !== null && motifControl?.value === 'Autre') {
-    // If yes, enable the form control
+ 
     motifControl.enable();
   } else if (motifControl !== null) {
     motifControl.disable(); 

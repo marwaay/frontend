@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Personnel } from '../../../models/Personnel';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { NotificationService } from '../../../services/notification/notification.service';
 import { UserService } from '../../../services/profile/user.service';
 import { PersonnelserviceService } from '../../../personnel/personnelservice.service';
@@ -19,6 +19,7 @@ export class MesemployesComponent {
   userProfile: any;
   userId: number | undefined;
   service!:string;
+
   constructor(
     private afficherusersService: PersonnelserviceService,
     private router:Router,    private notificationService:NotificationService, private profile :UserService,
@@ -30,6 +31,23 @@ export class MesemployesComponent {
   }
 
   ngOnInit(): void {
+
+
+
+    
+
+      // Vérifie si la page a déjà été rechargée
+      const hasReloaded = localStorage.getItem('hasReloaded');
+
+      // Si la page n'a pas encore été rechargée, effectue le rechargement
+      if (!hasReloaded) {
+        // Recharge la page
+        window.location.reload();
+        // Enregistre l'état du rechargement dans le stockage local
+        localStorage.setItem('hasReloaded', 'true');
+      }
+
+      
 
     this.profile.getUserProfile().subscribe(
       (data: any) => {
@@ -121,7 +139,7 @@ searchUsers(query: string) {
       .subscribe(
         (data) => {
           if (data.length > 0) {
-            this.employes = data;
+            this.employes = data.filter(employe => employe.service === this.service && employe.role ==="EMPLOYEE");
           } else {
             this.employes = [];
           }

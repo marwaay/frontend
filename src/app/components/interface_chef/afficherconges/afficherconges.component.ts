@@ -16,7 +16,7 @@ export class AffichercongesComponent {
   userProfile: any;
   userId: number | undefined;
   id_chef!:number;
-
+service!:string
   constructor(
     private congeService: CongeService,
     private router: Router,
@@ -95,7 +95,7 @@ getStatusStyle(statut: string): any {
 }
 
 redirectToHome() {
-  this.router.navigate(['/home']);
+  this.router.navigate(['/homee']);
 }
 showCalendar: boolean = false;
 toggleCalendar(): void {
@@ -112,11 +112,11 @@ afficherImage(conge: any, fileName: string): void {
     .subscribe((response: Blob) => {
       const fileURL = URL.createObjectURL(response);
       if (fileName.toLowerCase().endsWith('.pdf')) {
-        // Créer un lien <a> avec l'URL blob
+      
         const link = document.createElement('a');
         link.href = fileURL;
-        link.target = '_blank'; // Ouvrir dans une nouvelle fenêtre
-        link.click(); // Simuler un clic sur le lien
+        link.target = '_blank'; 
+        link.click(); 
       } else {
         this.imageSrc = fileURL;
       }
@@ -162,8 +162,9 @@ searchcongess(query: string) {
     this.profile.searchCongess(query)
       .subscribe(
         (data) => {
-            this.conges = data;
-         
+          
+          this.conges = data.filter(conge => conge.user.service === this.service && conge.statut !== 'En_Attente');
+
         },
         (error) => {
           this.conges = [];

@@ -48,7 +48,7 @@ console.log(this.userId)
       nom: [this.userProfile.nom, Validators.required],
       prenom: [this.userProfile.prenom, Validators.required],
       statut: [this.userProfile.statut, Validators.required],
-      nbr_enfant: [this.userProfile.nbr_enfant , [Validators.required,this.validateNombreEnfant]],
+      nbrEnfant: [this.userProfile.nbrEnfant , [this.validateNombreEnfant]],
       tel: [this.userProfile.tel, [ Validators.required,this.validatePhoneNumber]],
       email: [this.userProfile.email, [Validators.required,this.validateEmail]],
       matricule: [this.userProfile.matricule, Validators.required],
@@ -64,25 +64,24 @@ console.log(this.userId)
   }
 
   redirectToHome() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/homee']);
   }
-
   validatePhoneNumber(control: AbstractControl): { [key: string]: any } | null {
     const phoneNumber = control.value;
-    const isValidNumber = /^\d{8}$/.test(phoneNumber);
+    const isValidNumber = /^\+216\d{8}$/.test(phoneNumber);
     const containsLetter = /[a-zA-Z]/.test(phoneNumber);
-
+  
     if (control.value && !isValidNumber) {
       return { 'invalidPhoneNumber': true };
     }
-
+  
     if (containsLetter) {
       return { 'invalidPhoneNumber': true, 'containsLetter': true };
     }
-
+  
     return null;
   }
-
+  
   validateEmail(control: AbstractControl): { [key: string]: any }  | null {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (control.value && !emailPattern.test(control.value)) {

@@ -13,6 +13,9 @@ import { UserService } from '../../services/profile/user.service';
 })
 export class ArchiveComponent {
   conges: Conge[] = [];
+  userProfile: any;
+  userId: number | undefined;
+  service!:string;
 
   constructor(
     private congeService:CongeService,
@@ -24,12 +27,35 @@ export class ArchiveComponent {
 
      
   ngOnInit(): void {
+
+
+    this.profile.getUserProfile().subscribe(
+      (data: any) => {
+        this.userProfile = data;
+        this.userId = this.userProfile.id;
+        this.service=this.userProfile.service;
+      },
+      (error: any) => {
+        console.error('Error fetching user profile:', error);
+      }
+    );
+    console.log()
     this.afficherArchive();
+
+
+
   }
 
   private afficherArchive() {
     this.congeService.getArchive()
-      .subscribe(conges => this.conges = conges);
+      .subscribe(conges => {
+
+        this.conges = conges.filter(conge =>  conge.user.service === this.service);
+
+console.log(this.conges)
+
+      });
+      
   }
 
 
@@ -131,13 +157,21 @@ openSearchBox(): void {
   }, 0);
 }
 
-searchcongess(query: string) {
-  if (query.trim() !== '') {
-    this.profile.searchCongess(query)
+
+
+searchconges(query: string) {
+  if (query.trim() !== '' ) {
+    this.profile.searchConges(query)
       .subscribe(
         (data) => {
-            this.conges = data;
-         
+          if (data) {
+            this.conges = data.filter(conge => conge.user.service === this.service && conge.statut !== 'En_Attente');
+
+           
+
+          } else {
+            this.conges = [];
+          }
         },
         (error) => {
           this.conges = [];
@@ -148,5 +182,10 @@ searchcongess(query: string) {
     this.conges = [];
   }
 }
+
+
+
+
+
 
 }

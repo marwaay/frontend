@@ -31,6 +31,10 @@
           <form  *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="ModifierUser()"  class="user-form">
             <div class="form-row">
               <div class="form-group col-md-6">
+                <label for="nom">Cin :</label>
+                <input type="text" formControlName="cin" class="form-control rounded-custom" [ngClass]="{ 'invalid-input': submitted && userForm.controls['cin'].errors?.['required'] }"><br>
+                <span *ngIf="submitted && userForm.controls['cin'].errors?.['required']" class="text-danger">Cin requis</span> </div>
+              <div class="form-group col-md-6">
                <label for="nom">Nom :</label>
                <input type="text" formControlName="nom" class="form-control rounded-custom" [ngClass]="{ 'invalid-input': submitted && userForm.controls['nom'].errors?.['required'] }"><br>
                <span *ngIf="submitted && userForm.controls['nom'].errors?.['required']" class="text-danger">Nom requis</span>             </div>
@@ -46,14 +50,11 @@
              <span *ngIf="submitted && userForm.controls['statut'].errors?.['required']" class="text-danger">Statut requis</span>
 
             </div>
-        <div class="form-group col-md-6">
-
-          <label>Nombre d'enfants :</label>
-         <input type="text" formControlName="nbr_enfant" class="form-control rounded-custom" [ngClass]="{ 'invalid-input': submitted && userForm.controls['nbr_enfant'].errors?.['required'] }"><br>
-         <span *ngIf="submitted && userForm.controls['nbr_enfant'].errors?.['required']" class="text-danger">Nombre d'enfants requis</span>
-         <span *ngIf="submitted && userForm.controls['nbr_enfant']?.errors?.['invalidNumberOfChildren']" class="text-danger">Nombre d'enfants invalide</span>
-
-        </div>
+            <div class="form-group col-md-6">
+              <label for="nbrEnfant">Nombre d'enfants :</label>
+              <input type="text" formControlName="nbrEnfant" class="form-control rounded-custom" [ngClass]="{ 'invalid-input': submitted && userForm.controls['nbr_enfant'] }"><br>
+              <span *ngIf="submitted && userForm.controls['nbrEnfant']?.errors?.['invalidNumberOfChildren']" class="text-danger">Nombre d'enfants invalide</span>
+            </div>
          </div>
 
 
@@ -83,12 +84,24 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-
-    <label>Sexe :</label>
-    <input type="text" formControlName="sexe" class="form-control rounded-custom" [ngClass]="{ 'invalid-input': submitted && userForm.get('sexe')?.errors }"><br>
-    <span *ngIf="submitted && userForm.controls['sexe'].errors?.['required']" class="text-danger">Sexe requis</span>
-
-    </div>
+      <label>Sexe :</label><br>
+      <div class="form-check form-check-inline">
+          <input type="radio" id="femme" formControlName="sexe" class="form-check-input" [value]="'Femme'"
+                 [ngClass]="{ 'invalid-input': submitted && userForm.get('sexe')?.errors }"
+                 [checked]="userForm.get('sexe')?.value === 'femme'">
+          <label for="femme" class="form-check-label">Femme</label>
+      </div>
+      <div class="form-check form-check-inline">
+          <input type="radio" id="homme" formControlName="sexe" class="form-check-input" [value]="'Homme'"
+                 [ngClass]="{ 'invalid-input': submitted && userForm.get('sexe')?.errors }"
+                 [checked]="userForm.get('sexe')?.value === 'homme'">
+          <label for="homme" class="form-check-label">Homme</label>
+      </div>
+      <br>
+      <span *ngIf="submitted && userForm.controls['sexe']?.errors?.['required']" class="text-danger">Sexe requis</span>
+  </div>
+  
+  
     <div class="form-group col-md-6">
 
         <label for="email">Email :</label>
@@ -104,14 +117,14 @@
           <div class="form-group col-md-6">
     <label>Matricule :</label>
     <input type="text" formControlName="matricule" class="form-control rounded-custom" [ngClass]="{ 'invalid-input': submitted && userForm.get('matricule')?.errors }"><br>
-    <span *ngIf="submitted && userForm.controls['matricule'].errors?.['required']" class="text-danger">Email requis</span>
+    <span *ngIf="submitted && userForm.controls['matricule'].errors?.['required']" class="text-danger"> requis</span>
 
           </div>
           <div class="form-group col-md-6">
 
     <label>Rôle :</label>
     <input type="text" formControlName="role" class="form-control rounded-custom" [ngClass]="{ 'invalid-input': submitted && userForm.get('role')?.errors }"><br>
-    <span *ngIf="submitted && userForm.controls['role'].errors?.['required']" class="text-danger">Email requis</span>
+    <span *ngIf="submitted && userForm.controls['role'].errors?.['required']" class="text-danger"> requis</span>
 
           </div>
   </div>

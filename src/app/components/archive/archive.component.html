@@ -45,7 +45,7 @@
           <h3>Congés</h3>
           <i class='bx bx-search' title="Rechercher" (click)="openSearchBox()"></i>
           <div *ngIf="showSearchBox" class="search-box">
-            <input #searchInput type="text" placeholder="Rechercher ..." (keyup.enter)="searchcongess(searchInput.value)">
+            <input #searchInput type="text" placeholder="Rechercher ..."  (keyup.enter)="searchconges(searchInput.value)"   >
           </div>          <i class='bx bx-filter' ></i>
         </div>
         <table>

@@ -36,5 +36,11 @@ export class CongeChartService {
   }
 
 
-  
+  getPercentageBystatut(userId: number): Observable<CountType[]> {
+    return this.http.get<CountType[]>(`${this.baseUrl}/count-by-statut/${userId}`);
+  }
+
+  getPercentageBySexeForEmployees(): Observable<CountSexe[]> {
+    return this.http.get<CountSexe[]>(`${this.baseUrl}/sexpercentEmployees`);
+  }
 }

@@ -23,6 +23,6 @@ export class ParametresComponent {
   }
 
 redirectToHome() {
-  this.router.navigate(['/home']);
+  this.router.navigate(['/homee']);
 }
 }
